@@ -1,0 +1,37 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# 0. Custom Domain Resolver
+[[edge_functions]]
+  path = "/*"
+  function = "resolver"
+
+# 1. Register the "Marketing Brain" Edge Function
+[[edge_functions]]
+  path = "/go"
+  function = "go"
+
+[[edge_functions]]
+  path = "/go/*"
+  function = "go"
+
+[[edge_functions]]
+  path = "/s/*"
+  function = "go"
+
+# 2. Redirect /api/ to serverless functions
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# 3. Support for React SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  command = "npm run dev"
+  port = 8888

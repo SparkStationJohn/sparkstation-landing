@@ -4,3 +4,10 @@ dist/
 *.log
 .DS_Store
 .cache/
+__pycache__/
+*.pyc
+scratch/
+backup/
+supabase/.temp/
+*.zip
+netlify/
